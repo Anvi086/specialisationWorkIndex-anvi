@@ -1,27 +1,29 @@
-/*!!!!!*/
-/*add in your own font imports here*/
-/*remember to update them in the rest of the CSS : eg the body selector*/
+/* !!!!! */
+/* add in your own font imports here */
+/* remember to update them in the rest of the CSS : eg the body selector */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-/*!!!!!*/
-/*change out, and/or add colours to the colour scheme*/
-:root{
+/* !!!!! */
+/* change out, and/or add colours to the colour scheme */
+:root {
     /* basic 2-bit palette from 1bit Monitor Glow Palette by Polyducks */
     /* https://lospec.com/palette-list/1bit-monitor-glow */
-    --colour-1: #222323;
+    --colour-1: #1d1f1f;
     --colour-2: #f0f6f0;
+
+    /* link colour, works on both light and dark backgrounds */
+    --colour-link: #d372f6;
 }
 
 /* this swaps the colour order to account for user's OS dark mode */
-/*!!!!!*/
-/*remember to update the colours here too to reflect the above changes*/
+/* !!!!! */
+/* remember to update the colours here too to reflect the above changes */
 @media (prefers-color-scheme: dark) {
-    :root{
+    :root {
         --colour-1: #f0f6f0;
-        --colour-2: #222323;
+        --colour-2: #191414;
     }
 }
-
 
 body {
     background-color: var(--colour-2);
@@ -55,10 +57,27 @@ nav {
     align-items: flex-end;
 }
 
+/* links inside the nav use the link colour, no underline until hovered */
+nav a {
+    color: var(--colour-link);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* any other links in the page (e.g. inside paragraphs) use the same colour */
+a {
+    color: var(--colour-link);
+}
+
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 800px; /* keeps line length readable */
+    margin: 0 auto; /* centres the main content block on the page */
 }
 
 aside {
@@ -72,10 +91,10 @@ footer {
     margin-block-start: 3rem;
 }
 
-/*technique from Kevin Powell*/
-/*https://youtu.be/CU8Plk-53RU?si=zMpP0Pfbg1SaXeDB&t=255*/
-/*longer post about how this works and the * + * selector*/
-/*https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/*/
+/* technique from Kevin Powell */
+/* https://youtu.be/CU8Plk-53RU?si=zMpP0Pfbg1SaXeDB&t=255 */
+/* longer post about how this works and the * + * selector */
+/* https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/ */
 .prose > * + * {
     margin-block-start: var(--prose-flow, 1em);
 }
@@ -99,6 +118,7 @@ footer {
         margin-block-start: 2rem;
     }
 }
+
 /* medium breakpoint : tablet in portrait */
 @media (width < 840px) {
     header {
@@ -126,7 +146,62 @@ footer {
         margin-block-start: 1rem;
     }
 }
+
 /* compact breakpoint : phone in portrait */
 @media (width < 600px) {
 
+}
+
+/* ===== Basic content spacing ===== */
+
+/* space between paragraphs, and easier-to-read line height */
+p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* space between major page sections */
+section {
+    margin-bottom: 2.5rem;
+}
+
+/* space above/below main headings */
+h2 {
+    margin-bottom: 1rem;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* space out each UI write-up in the Design Analysis section */
+article {
+    margin-bottom: 2rem;
+}
+
+/* space out list items, e.g. in Design Framing */
+ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Design Analysis headings ===== */
+
+/* forces the "— Purpose" / "— Feedback" text onto its own line, 
+   separate from the UI name/attribution above it */
+.aspect {
+    display: block;
+    margin-top: 0.25rem;
+    font-weight: normal;
+}
+
+/* spacing around images */
+img {
+    margin-bottom: 0.5rem; /* space below the image, before the caption */
+    margin-top: 1.5rem;    /* space above the image, after the paragraph before it */
 }
