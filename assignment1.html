@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- !!!!! -->
+<!--    change this to refer to your specific page  -->
+    <title>Assignment 1 </title>
+
+<!-- !!!!! -->
+<!--  change this to your preferred icon  -->
+    <!-- favicon was sourced from favicon.io but the original graphics are copyright 2020 Twitter, Inc
+    and other contributors -->
+    <!-- They are licensed under CC-BY 4.0 as linked below -->
+    <!-- https://creativecommons.org/licenses/by/4.0/ -->
+    <link rel="icon" type="image/png" href="./assets/icons/favicon.png">
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!---  AI Acknowledgement: Claude was used during the development of this document to:
+    - Help structure and correct HTML (fixing broken tags, applying
+      semantically appropriate elements such as <article>, <section>, <ul>)
+    - Suggest and explain CSS rules for spacing, layout, and link styling.
+    - I asked Claude to explain things that i didnt understand.
+    - Help edit and simplify written content for clarity (Scenario Analysis,
+      Project Overview, Project Framing, and Interaction Design Analysis
+      sections), based on my own ideas, research.
+    - Troubleshoot image display issues. -->
+
+    <header>
+<!-- !!!!! -->
+<!--    change this to your preferred online name  -->
+        <h1>System Design Document</h1>
+    </header>
+
+    <div class="mainNavContainer">
+
+        <nav>
+            <a href="index.html">Home Page</a>
+            <a href="assignment2.html">Assignment 2</a>
+            <a href="https://au.miro.com/app/board/u3jVOf4l154=/">Community of Practice</a>
+        </nav>
+
+        <!-- I used the <strong> tag to make the text bold in the ncessary places and added images to give a clear visual -->
+
+                <main>
+            <section id="scenario-analysis">
+                <h2>Design Scenario Analysis and Response</h2>
+                <p>
+                    The Musical Toy for Toddlers scenario asks how young children with minimal language skills
+                    can be given access to musical exploration. The scenario's context highlights a real barrier
+                    in existing browser-based instruments: their depth of control, while valuable for experienced
+                    users, often depends on reading labels, understanding menus, or precise input - none of
+                    which a toddler can reliably do. I interpret this as a design problem about removing friction
+                    between curiosity and sound, so that exploration requires no instruction and no language at all.
+                </p>
+                <p>
+                    For my project, I respond to this through a "musical galaxy" concept called the "Milky Way",
+                    where planets in a simple visual space each represent a different note or sound. Rather than
+                    requiring the child to learn an interface, the instrument invites them to simply move around
+                    the space and discover what happens - an interaction built on curiosity and play rather
+                    than instruction.
+                </p>
+                <p>
+                    The purpose of the instrument is to let a child with no reading ability and minimal language
+                    explore musical sound freely, through movement alone, without needing to be taught how it
+                    works. The worth of the design centres on accessibility and non-intimidation: removing the
+                    sense of "getting it wrong" that complex instruments can create, and instead rewarding any
+                    interaction - however random or exploratory - with an immediate, pleasant, and
+                    forgiving sonic response.
+                </p>
+            </section>
+
+            <section id="project-overview">
+                <h2>Project Overview</h2>
+                <h3>Synopsis</h3>
+                <p>
+                    The instrument is a browser-based "musical galaxy" - a visual space containing a small
+                    number of planets, each mapped to a different note within a constrained, forgiving scale. As
+                    the user moves their mouse across the screen, proximity to each planet is tracked and used to
+                    trigger and shape sound, so that simply exploring the space with the cursor becomes an act of
+                    musical play. No instructions, labels, or reading are required to begin interacting.
+
+                    <img src="./assets/images/solarsystem.png" alt="Screenshot of the Milky Way instrument, showing a dark background with a few glowing planets and a cursor moving between them.">
+
+                </p>
+                <h3>Response to Purpose and Worth</h3>
+                <p>
+                    The instrument responds to the scenario's purpose - musical exploration without
+                    reliance on language - by using spatial movement as the sole means of interaction. A
+                    toddler does not need to identify buttons, read labels, or understand any interface
+                    convention; they only need to move a cursor (or, on a touch device, a finger) and observe
+                    what happens. This directly supports the worth of accessibility and non-intimidation, since
+                    there is no fixed sequence of steps to learn and no way to "fail" at using it. Every movement
+                    produces some sonic result, and the constrained scale ensures that whatever combination of
+                    planets a child triggers will sound musically coherent rather than jarring, reinforcing
+                    curiosity-driven play rather than performance pressure.
+                </p>
+            </section>
+
+            <section id="project-framing">
+                <h2>Project Framing</h2>
+                <p>
+                    This project is built for the web browser, as required by the brief, using the Web Audio API
+                    to make and control sound. The main technique used is spatial input - tracking the
+                    mouse using the <code>mousemove</code> event. As the user moves the mouse closer to or
+                    further from a planet, that movement decides whether a sound plays and how it sounds.
+                </p>
+                <p>A few ideas from the UIs I looked at shaped how this instrument will work:</p>
+                <ul>
+                    <li>
+                        Like <strong>Music Mouse</strong>, the notes will be limited to a set of notes that
+                        always sound good together, no matter where the user moves. This means there's no way to
+                        make a "wrong" sound, which makes it safe and fun to explore.
+                    </li>
+                    <li>
+                        Like <strong>Plink</strong>, sound will react continuously as the mouse moves, not just
+                        when clicked. This makes the instrument feel more responsive and alive, which suits how a
+                        toddler moves - freely and without aiming precisely.
+                    </li>
+                    <li>
+                        Like <strong>Holdspace</strong>, the instrument will stick to one simple way of
+                        interacting - moving the mouse - instead of adding lots of buttons or
+                        settings. Keeping it simple keeps it calming and easy to understand.
+                    </li>
+                    <li>
+                        Unlike <strong>Diamond Synth</strong>, there will be no labels, words, or settings that
+                        need to be understood before using it. Everything should make sense just by trying it.
+                    </li>
+                </ul>
+                <p>
+                    In terms of style, the sounds will be soft, warm, and gentle rather than harsh or
+                    percussive, to suit a young audience and keep the toy feeling non-threatening. The visuals
+                    will be simple too -  basic shapes, colours, and glowing effects for the planets, rather
+                    than detailed pictures, so the feedback stays clear and easy to notice.
+                </p>
+                <p>
+                    What's <strong>not</strong> included: no menus, sliders, typed input, or written
+                    instructions; no complex sequencing or step-based composing tools; and no sample-based or
+                    harsh percussive sounds. These would all work against the goal of a toy that anyone can use
+                    without being taught how. Touch input might be added later as an extra way to play, but the
+                    mouse will be the main way to interact for now.
+                </p>
+            </section>
+
+            <section id="interaction-design-analysis">
+                <h2>Design Analysis</h2>
+
+                <article>
+                    <h3>Music Mouse - Laurie Spiegel, browser version by Tero Parviainen
+                        (independently researched) <span class="aspect"> - Purpose</span></h3>
+                    <p>
+                        Music Mouse turns mouse movement into music. Wherever you move the cursor on the grid,
+                        the software automatically keeps the notes sounding good together - it already
+                        "knows" which notes fit, so the user doesn't have to. That's why it's called an
+                        "intelligent instrument": it carries the musical knowledge so the player doesn't need
+                        any. A free version of it that runs in the browser was made by Tero Parviainen, with
+                        Laurie Spiegel's own involvement, which is why it was usable for this analysis.
+                    </p>
+                    <p>
+                        <strong>Impact on proposal:</strong> This supports the main idea behind the galaxy
+                        instrument - if every planet is tied to notes that always sound good together,
+                        then no matter where the user moves, nothing will ever sound "wrong." Music Mouse shows
+                        that this kind of limit doesn't make an instrument boring - it actually makes it
+                        easier and more fun for a beginner, because there's nothing to be afraid of getting
+                        wrong.
+
+                        <img src="./assets/images/musicmouse.png" alt="Screenshot of Music Mouse, showing a grid with a cursor moving across it, and a waveform visualisation at the bottom.">
+                        
+                    </p>
+
+                </article>
+
+                <article>
+                    <h3>Plink (independently researched) <span class="aspect"> - Feedback</span></h3>
+                    <p>
+                        Plink is a music tool in the browser where you hold down the mouse button to play a
+                        note, and moving your mouse up and down changes the pitch while you hold it. You can
+                        also click coloured boxes to change instruments, and other people using the site at the
+                        same time show up and play alongside you. The key thing is that the sound reacts
+                        instantly and smoothly to movement - it doesn't just jump from note to note, it
+                        slides, following your hand.
+                    </p>
+                    <p>
+                        <strong>Impact on proposal:</strong> This shaped a key decision for the galaxy -    
+                        sound should react continuously as the mouse gets closer to a planet, not just switch on
+                        and off with a click. Smooth, constant feedback feels more alive and playful, which
+                        suits how a toddler moves - messy and exploratory, not precise.
+
+                        <img src="./assets/images/plink.png" alt="Screenshot of Plink, showing a grid of coloured boxes and a cursor moving across them, with sound waves visualised around the cursor.">
+
+                        <img src="./assets/images/plinkgameplay.png" alt="Screenshot of Plink, showing a cursor moving up and down while holding the mouse button, with a smooth pitch curve visualised on the screen.">
+
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Holdspace - Carlos Yusim (provided list)
+                        <span class="aspect"> - Worth / Characterisation</span></h3>
+                    <p>
+                        Holdspace only asks the user to do one thing: hold down the spacebar and let go. The
+                        whole piece of music is built around that single action. Visually, it's simple too
+                        - just black-and-white line art with generated sound. Because it only asks for one
+                        interaction, it feels calm and focused rather than busy or confusing.
+                    </p>
+                    <p>
+                        <strong>Impact on proposal:</strong> This is a reminder to keep the galaxy simple. It
+                        would be easy to want to add more buttons or modes to make it feel "more advanced," but
+                        Holdspace shows that sticking to one clear action - in this case, moving the mouse
+                        - can be more effective, especially for a young user who needs things to feel
+                        obvious.
+
+                        <img src="./assets/images/holdspace.png" alt="Screenshot of Holdspace, showing a simple black-and-white line drawing of a person holding a spacebar key, with generated sound waves around them.">
+
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Diamond Synth - Damiano Tagliaferri (provided list)
+                        <span class="aspect"> - Information Design</span></h3>
+                    <p>
+                        Diamond Synth is a more complex synthesizer. It has a keyboard you play like a piano,
+                        plus knobs, waveform icons, and labelled buttons like Drive, Chorus, and Reverb, as well
+                        as a switch between "Poly" and "Mono" modes. Some parts are easy to figure out just by
+                        trying them (the waveform icons), but other parts only make sense if you already know
+                        what words like "chorus" or "poly" mean - there's no way to guess what they do just
+                        by looking.
+                    </p>
+                    <p>
+                        <strong>Impact on proposal:</strong> This is useful as an example of what not to do.
+                        Diamond Synth assumes the user can read letters and understands music production terms
+                        - a toddler can do neither. It confirms that the galaxy instrument needs to avoid
+                        any labels, text, or settings that require prior knowledge. Everything should be
+                        understandable just by trying it - moving the mouse and hearing what happens.
+
+                        <img src="./assets/images/diamondsynth.png" alt="Screenshot of Diamond Synth, showing a keyboard, knobs, and labelled buttons for various sound effects.">
+                        
+                    </p>
+                </article>
+                
+
+            </section>
+            <p>
+
+                <!-- i put the references into a list so that they would be easy to read-->
+                    Refrences: 
+                    <ul>
+                   
+                   <li> <a href="https://icutter.itch.io/diamond-synth" target="_blank">https://icutter.itch.io/diamond-synth</a> </li>
+                    <li> <a href="https://holdspace.surge.sh" target="_blank">https://holdspace.surge.sh</a> </li>
+                    <li> <a href="https://teropa.info/musicmouse/" target="_blank">https://teropa.info/musicmouse/</a> </li>
+                    <li> <a href="https://dinahmoelabs.com " target="_blank">https://dinahmoelabs.com </a> </li>
+
+                    </ul>
+
+                </p>
+
+        </main>
+
+        <!-- this is an empty element which helps with spacing -->
+        <aside></aside>
+
+    </div>
+
+    <footer>
+        <p>
+<!-- !!!!! -->
+<!--    change this to your preferred online name and update link to refer to your github page  -->
+            Page maintained by:
+            <a href="https://github.com/Anvi086" target="_blank">
+            Anvi Kashelikar
+            </a>
+        </p>
+    </footer>
+</body>
+</html>
