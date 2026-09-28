@@ -98,8 +98,8 @@ animation: planetGlow 0.9s ease-out;
 filter: drop-shadow(0 0 0 transparent);
 }
 
-25% {
-filter: drop-shadow(0 0 14px var(--glow-core))
+35% {
+filter: drop-shadow(0 0 25px var(--glow-core))
         drop-shadow(0 0 36px var(--glow-halo));
 }
 
@@ -115,6 +115,55 @@ filter: drop-shadow(0 0 0 transparent);
 animation-duration: 0.01s;
 }
 }
+
+/* each planet glows in its own colours (taken from its gradient) */
+#sun {
+--glow-core: #fffbd0;
+--glow-halo: #ffd83d;
+}
+
+#mercury {
+--glow-core: #d8d6d2;
+--glow-halo: #9e9c98;
+}
+
+#venus {
+--glow-core: #fff0c2;
+--glow-halo: #e8c27a;
+}
+
+#earth {
+--glow-core: #8fdcff;
+--glow-halo: #328bd0;
+}
+
+#mars {
+--glow-core: #ffad80;
+--glow-halo: #d96548;
+}
+
+#jupiter {
+--glow-core: #f5d4a3;
+--glow-halo: #d9a66f;
+}
+
+#saturn {
+--glow-core: #fff0c4;
+--glow-halo: #e5cc91;
+}
+
+#uranus {
+--glow-core: #d5ffff;
+--glow-halo: #9de5e5;
+}
+
+#neptune {
+--glow-core: #8ea6ff;
+--glow-halo: #4668d6;
+}
+
+
+
 
 
 /* intro popup */
