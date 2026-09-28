@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Assignment 2 </title>
+
+    <!-- favicon was sourced from favicon.io but the original graphics are copyright 2020 Twitter, Inc
+    and other contributors -->
+    <!-- They are licensed under CC-BY 4.0 as linked below -->
+    <!-- https://creativecommons.org/licenses/by/4.0/ -->
+    <link rel="icon" type="image/png" href="./assets/icons/favicon.png">
+
+    <link rel="stylesheet" href="assignment2-reset.css">
+    <link rel="stylesheet" href="assignment2-style.css">
+    <!-- defer makes the script wait for the page, so it can find the commit log sections -->
+    <script src="assignment2-script.js" defer></script>
+</head>
+<body>
+
+    <!---  AI Acknowledgement: Claude was used during the development of this document to:
+    - Help structure and correct HTML (fixing broken tags, applying
+      semantically appropriate elements such as <article>, <section>, <ul>)
+    - Suggest and explain CSS rules for spacing, layout, and link styling.
+    - I asked Claude to explain things that i didnt understand.
+    - Help edit and simplify written content for clarity (Scenario Analysis,
+      Project Overview, Project Framing, and Interaction Design Analysis
+      sections), based on my own ideas, research.
+    - Troubleshoot image display issues. -->
+
+    <header>
+        <h1>Parallel Prototypes</h1>
+    </header>
+
+    <div class="mainNavContainer">
+
+        <nav>
+            <a href="index.html">Home Page</a>
+            <a href="assignment1.html">Assignment 1</a>
+            <a href="https://au.miro.com/app/board/u3jVOf4l154=/">Community of Practice</a>
+        </nav>
+
+        <main>
+            <section id="scenario-analysis">
+                <h2>Milky Way - A Musical Galaxy for Toddlers </h2>
+                <p>
+                    Milky Way is a browser-based musical galaxy for toddlers with minimal language.
+                    Every prototype below shares the same planets, the same always-consonant scale and the same soft,
+                    warm sound, so nothing can sound wrong and no text is needed. I explored two areas of the design: 
+                    mapping and feedback. Each area has three prototypes, and each prototype is a separate branch published
+                    with GitHub Pages.
+                </p>
+            </section>
+
+            <section id="project-overview">
+                <h2>Area 1: Mapping</h2>
+
+                <p>
+                    My first area of exploration is mapping: how a child's gesture becomes sound. 
+                    A toddler cannot read labels or follow steps, so the gesture itself has to be the whole instruction. 
+                    The three prototypes give three different answers. In the first prototype the child makes each sound by choosing it,
+                    in the second sound follows the child's movement, and in the third the galaxy plays itself and the child 
+                    reshapes it.
+
+                    This is also where my extended technique sits. The orbiting prototype needs precisely timed notes,
+                    so it schedules them on the Web Audio clock instead of triggering sound from timers or events.
+                    I am interested in how much control a young child can have over timing and pitch without ever being
+                    asked to understand either.
+                </p>
+
+                <h3><a href="#">Prototype 1 - Tap a Planet</a></h3>
+                <!-- TODO: replace # with this prototype's GitHub Pages URL -->
+                <p>
+                    This prototype is the most direct mapping. Tapping or clicking a planet plays that planet's note. 
+                    Each planet has a hit area larger than it looks, so imprecise taps still land. It is a baseline to
+                    compare the other two against, and it follows the one-action simplicity of Holdspace, 
+                    where a single gesture is the entire interface.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/tap.csv"><noscript><a href="logs/tap.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+                <h3><a href="#">Prototype 2 - Hold and Drag</a></h3>
+                
+                <p>
+                    This prototype is inspired by Plink, where holding the mouse down plays a note and moving changes it smoothly.
+                    Here all the planets are on screen, and while the child holds and drags, the sound glides between the
+                    planets' notes. Lifting the finger stops it. It carries over Plink's continuous, sliding response,
+                    which suits the loose, exploratory way a toddler moves.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/drag.csv"><noscript><a href="logs/drag.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+                <h3><a href="#">Prototype 3 - Orbiting Planets</a></h3>
+                
+                <p>
+                    This prototype borrows from the orrery, the mechanical models where planets rotate around a sun.
+                    The planets orbit a central star at different speeds and each plays its note as it passes a fixed point,
+                    so the music loops on its own. The child can drag a planet nearer or further to change its speed.
+                    It treats the loop as the instrument, with the child shaping music that is already playing.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/orrery.csv"><noscript><a href="logs/orrery.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+            </section>
+
+            <section id="feedback">
+                <h2>Area 2: Feedback</h2>
+
+                <p>
+                    My second area of exploration is feedback: how the screen shows that sound is happening.
+                    My design analysis ruled out labels and text, as in Diamond Synth, so the visuals have to tell a child
+                    that they made something happen. These three prototypes keep one fixed sound behaviour and change only
+                    the visual response, from a still glow to motion to a moving world.
+                </p>
+
+                <h3><a href="#">Prototype 4 - Glow</a></h3>
+                
+                <p>
+                    This prototype is the simplest visual response. A planet brightens and its halo grows while its note
+                    sounds, then fades as the sound fades. It comes straight from the glowing planets in my Assignment 1
+                    concept, and uses one clear change, brightness, for the child to notice.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/glow.csv"><noscript><a href="logs/glow.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+                <h3><a href="#">Prototype 5 - Ripples and Pulses</a></h3>
+               
+                <p>
+                    This prototype shows sound as motion. Each note sends rings expanding outward from its planet,
+                    like a drop in water. It takes cues from the sound waves drawn around the cursor in Plink, moving the
+                    feedback from brightness to movement, which young children tend to follow more easily.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/ripple.csv"><noscript><a href="logs/ripple.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+                <h3><a href="#">Prototype 6 - Comet Trail</a></h3>
+                <!-- TODO: replace # with this prototype's GitHub Pages URL -->
+                <p>
+                    This prototype makes the whole space respond. The cursor leaves a comet trail in the colour of the
+                    nearest planet, and planets drift slightly toward it. The child is not only triggering sound but pulling
+                    on a galaxy that reacts to them, which pushes the "musical galaxy" idea furthest.
+                </p>
+                <details>
+                    <summary>Commit Logs</summary>
+                    <div class="log" data-csv="logs/trail.csv"><noscript><a href="logs/trail.csv">Download commit log (CSV)</a></noscript></div>
+                </details>
+
+            </section>
+
+            <p>
+                <!-- the microsoft peer testing link -->
+                <a href="#">Peer User Testing Form</a>
+            </p>
+        </main>
+
+        <!-- this is an empty element which helps with spacing -->
+        <aside></aside>
+
+    </div>
+
+    <footer>
+        <p>
+            Page maintained by:
+            <a href="https://github.com/Anvi086" target="_blank">
+            Anvi Kashelikar
+            </a>
+        </p>
+    </footer>
+</body>
+</html>
