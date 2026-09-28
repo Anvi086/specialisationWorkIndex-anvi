@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prototype 1 - Tap a Planet</title>
 </head>
-<body>
+
     <link rel="stylesheet" href="prototype1-style.css">
 </head>
 
 <body>
   <svg id="sky" viewBox="0 0 800 500">
    <!-- Sun -->
-<circle cx="10" cy="250" r="105" fill="gold" />
+<circle id="sun" cx="10" cy="250" r="105" fill="gold" />
 
 <!-- Planets, in order from the sun -->
-<circle cx="180" cy="370" r="20" fill="#b8b2a7" /> <!-- Mercury -->
-<circle cx="252" cy="220" r="28" fill="#f0c987" /> <!-- Venus -->
-<circle cx="334" cy="310" r="36" fill="#4f9de8" /> <!-- Earth -->
-<circle cx="420" cy="390" r="25" fill="#e0684a" /> <!-- Mars -->
-<circle cx="480" cy="240" r="74" fill="#d9a066" /> <!-- Jupiter -->
-<circle cx="580" cy="85" r="55" fill="#ead29a" /> <!-- Saturn -->
-<circle cx="682" cy="360" r="36" fill="#8fe0e0" /> <!-- Uranus -->
-<circle cx="714" cy="150" r="34" fill="#5b6fe8" /> <!-- Neptune -->
+<circle id="mercury" cx="180" cy="370" r="20" fill="#b8b2a7" /> <!-- Mercury -->
+<circle id="venus" cx="252" cy="220" r="28" fill="#f0c987" /> <!-- Venus -->
+<circle id="earth" cx="334" cy="310" r="36" fill="#4f9de8" /> <!-- Earth -->
+<circle id="mars" cx="420" cy="390" r="25" fill="#e0684a" /> <!-- Mars -->
+<circle id="jupiter" cx="480" cy="240" r="74" fill="#d9a066" /> <!-- Jupiter -->
+<circle id="saturn" cx="580" cy="85" r="55" fill="#ead29a" /> <!-- Saturn -->
+<circle id="uranus" cx="682" cy="360" r="36" fill="#8fe0e0" /> <!-- Uranus -->
+<circle id="neptune" cx="714" cy="150" r="34" fill="#5b6fe8" /> <!-- Neptune -->
 
   </svg>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
   <script src="prototype1-script.js"></script>
