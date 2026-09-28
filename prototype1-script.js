@@ -1,6 +1,26 @@
 console.log(Tone);
 
+// the intro pop-up modal
+
+const introModal = document.getElementById("introDialog");
+
+const introCloseButton = document.getElementById(
+    "introDialogCloseButton"
+);
+
+// Show popup when page opens
+introModal.showModal();
+
+// Close popup when OK is clicked
+introCloseButton.addEventListener("click", () => {
+    introModal.close();
+});
+
+// the tone js synth for the planets
+
 const synth = new Tone.Synth().toDestination();
+
+// i added event listeners to each planet to play a different note when clicked
 
 document.getElementById("mercury").addEventListener("click", () => {
     synth.triggerAttackRelease("C4", "8n");
@@ -33,3 +53,4 @@ document.getElementById("uranus").addEventListener("click", () => {
 document.getElementById("neptune").addEventListener("click", () => {
     synth.triggerAttackRelease("C5", "8n");
 });
+
