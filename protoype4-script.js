@@ -1,4 +1,5 @@
- console.log(Tone);
+// Prototype 4 - Glow
+// tapping a planet plays its note AND makes it glow (visual feedback)
 
 // the intro pop-up modal
 
@@ -12,7 +13,8 @@ const introCloseButton = document.getElementById(
 introModal.showModal();
 
 // Close popup when OK is clicked
-introCloseButton.addEventListener("click", () => {
+introCloseButton.addEventListener("click", async () => {
+    await Tone.start(); // browsers need a click before audio can play
     introModal.close();
 });
 
@@ -20,37 +22,47 @@ introCloseButton.addEventListener("click", () => {
 
 const synth = new Tone.Synth().toDestination();
 
-// i added event listeners to each planet to play a different note when clicked
+// the glow feedback
 
-document.getElementById("mercury").addEventListener("click", () => {
-    synth.triggerAttackRelease("C4", "8n");
+function glowPlanet(planet) {
+    // restart the animation if the planet is tapped again quickly
+    planet.classList.remove("glow");
+    void planet.getBoundingClientRect();
+    planet.classList.add("glow");
+}
+
+// remove the glow class once the animation has finished
+document.querySelectorAll("#sky circle").forEach((planet) => {
+    planet.addEventListener("animationend", () => {
+        planet.classList.remove("glow");
+    });
 });
 
-document.getElementById("venus").addEventListener("click", () => {
-    synth.triggerAttackRelease("D4", "8n");
+// each planet plays a different note and glows when clicked
+
+const planetNotes = {
+    mercury: "C4",
+    venus: "D4",
+    earth: "E4",
+    mars: "F4",
+    jupiter: "G4",
+    saturn: "A4",
+    uranus: "B4",
+    neptune: "C5"
+};
+
+Object.entries(planetNotes).forEach(([id, note]) => {
+    const planet = document.getElementById(id);
+
+    planet.addEventListener("click", () => {
+        synth.triggerAttackRelease(note, "8n");
+        glowPlanet(planet);
+    });
 });
 
-document.getElementById("earth").addEventListener("click", () => {
-    synth.triggerAttackRelease("E4", "8n");
-});
+// the sun has no note, it just glows
+const sun = document.getElementById("sun");
 
-document.getElementById("mars").addEventListener("click", () => {
-    synth.triggerAttackRelease("F4", "8n");
+sun.addEventListener("click", () => {
+    glowPlanet(sun);
 });
-
-document.getElementById("jupiter").addEventListener("click", () =>{
-    synth.triggerAttackRelease("G4", "8n");
-});
-
-document.getElementById("saturn").addEventListener("click", () => {
-    synth.triggerAttackRelease("A4", "8n");
-});
-
-document.getElementById("uranus").addEventListener("click", () => {
-    synth.triggerAttackRelease("B4", "8n");
-});
-
-document.getElementById("neptune").addEventListener("click", () => {
-    synth.triggerAttackRelease("C5", "8n");
-});
-

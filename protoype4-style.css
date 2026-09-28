@@ -1,63 +1,61 @@
-/* !!!!! */
-/* add in your own font imports here */
-/* remember to update them in the rest of the CSS : eg the body selector */
+/* Prototype 4 - Glow (Feedback area) */
+
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/* !!!!! */
-/* change out, and/or add colours to the colour scheme */
 :root {
-    /* basic 2-bit palette from 1bit Monitor Glow Palette by Polyducks */
-    /* https://lospec.com/palette-list/1bit-monitor-glow */
-    --colour-1: #f0f6f0;
-    --colour-2: #171419;
+/* basic 2-bit palette from 1bit Monitor Glow Palette by Polyducks */
+/* https://lospec.com/palette-list/1bit-monitor-glow */
+--colour-1: #f0f6f0;
+--colour-2: #171419;
 
-    /* link colour, works on both light and dark backgrounds */
-    --colour-link: #d372f6;
+/* link colour, works on both light and dark backgrounds */
+--colour-link: #d372f6;
+
+/* glow colours used by the planet feedback */
+--glow-core: #ffffff;
+--glow-halo: #d372f6;
 }
 
 
 /* this swaps the colour order to account for user's OS dark mode */
-/* !!!!! */
-/* remember to update the colours here too to reflect the above changes */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --colour-1: #f0f6f0;
-        --colour-2: #171419;
+:root {
+--colour-1: #f0f6f0;
+--colour-2: #171419;
     }
 }
 
 
-/* !!!!! */
 /* galaxy background */
 body {
-    background-color: var(--colour-2);
+background-color: var(--colour-2);
 
-    background-image: url("assets/images/galaxy-bg-img.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+background-image: url("assets/images/galaxy-bg-img.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 
-    color: var(--colour-1);
-    font-family: 'Work Sans', sans-serif;
-    line-height: 1.5;
+color: var(--colour-1);
+font-family: 'Work Sans', sans-serif;
+line-height: 1.5;
 
-    padding: 1rem;
-    margin: 0;
+padding: 1rem;
+margin: 0;
 
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
 
-    min-height: 100vh;
+min-height: 100vh;
 }
 
 
 /* SVG */
 #sky {
-    width: 100%;
-    height: 100vh;
+width: 100%;
+height: 100vh;
 }
 
 
@@ -71,50 +69,96 @@ body {
 #saturn,
 #uranus,
 #neptune {
-    cursor: pointer;
+cursor: pointer;
+transition: filter 0.3s ease;
+}
+
+
+/* soft glow when the cursor hovers over a planet */
+#sun:hover,
+#mercury:hover,
+#venus:hover,
+#earth:hover,
+#mars:hover,
+#jupiter:hover,
+#saturn:hover,
+#uranus:hover,
+#neptune:hover {
+filter: drop-shadow(0 0 10px var(--glow-halo));
+}
+
+
+/* bright glow pulse when a planet is tapped */
+.glow {
+animation: planetGlow 0.9s ease-out;
+}
+
+@keyframes planetGlow {
+0% {
+filter: drop-shadow(0 0 0 transparent);
+}
+
+25% {
+filter: drop-shadow(0 0 14px var(--glow-core))
+        drop-shadow(0 0 36px var(--glow-halo));
+}
+
+100% {
+filter: drop-shadow(0 0 0 transparent);
+}
+}
+
+
+/* respect people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+.glow {
+animation-duration: 0.01s;
+}
 }
 
 
 /* intro popup */
 dialog {
-    width: 400px;
-    padding: 30px;
+width: 400px;
+max-width: 90vw;
+padding: 30px;
 
-    border: 2px solid white;
-    border-radius: 10px;
+border: 2px solid white;
+border-radius: 10px;
 
-    background: rgba(10, 5, 20, 0.95);
-    color: white;
+background: rgba(10, 5, 20, 0.95);
+color: white;
 
-    font-family: 'Work Sans', sans-serif;
-    font-size: 18px;
+font-family: 'Work Sans', sans-serif;
+font-size: 18px;
 
-    text-align: center;
+text-align: center;
 }
 
 
 /* dark overlay behind popup */
 dialog::backdrop {
-    background: rgba(0, 0, 0, 0.6);
+background: rgba(0, 0, 0, 0.6);
 }
 
 
 /* OK button */
 dialog button {
-    padding: 8px 25px;
+padding: 8px 25px;
 
-    border: 2px solid #d372f6;
-    border-radius: 8px;
+border: 2px solid #d372f6;
+border-radius: 8px;
 
-    background: transparent;
-    color: white;
+background: transparent;
+color: white;
 
-    font-family: 'Work Sans', sans-serif;
-    font-size: 16px;
+font-family: 'Work Sans', sans-serif;
+font-size: 16px;
 
-    cursor: pointer;
+cursor: pointer;
 }
 
 
 dialog button:hover {
-    background: #d372f6; }
+background: #d372f6;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prototype 4 - Glow </title>
+    <title>Prototype 4 - Glow</title>
 
     <link rel="stylesheet" href="prototype4-style.css">
 </head>
@@ -15,7 +15,8 @@
     <dialog id="introDialog">
         <p>
             This synthesizer will make some noise, please check your
-            system's volume setting. Tap the planets to play notes.
+            system's volume setting. Tap the planets to make them glow
+            and play notes.
         </p>
 
         <button id="introDialogCloseButton" autofocus>OK</button>
@@ -24,7 +25,7 @@
 
     <svg id="sky" viewBox="0 0 800 500">
 
-        <!-- i added gradients to the planets to give them more dimension -->
+        <!-- gradients give the planets more dimension -->
 
         <defs>
 
@@ -36,7 +37,6 @@
                 <stop offset="100%" stop-color="#d66b00" />
             </radialGradient>
 
-
             <!-- Mercury -->
             <radialGradient id="mercuryGradient" cx="30%" cy="25%">
                 <stop offset="0%" stop-color="#d8d6d2" />
@@ -44,7 +44,6 @@
                 <stop offset="75%" stop-color="#686662" />
                 <stop offset="100%" stop-color="#3f3e3b" />
             </radialGradient>
-
 
             <!-- Venus -->
             <radialGradient id="venusGradient" cx="30%" cy="25%">
@@ -54,7 +53,6 @@
                 <stop offset="100%" stop-color="#8a5e2f" />
             </radialGradient>
 
-
             <!-- Earth -->
             <radialGradient id="earthGradient" cx="30%" cy="25%">
                 <stop offset="0%" stop-color="#8fdcff" />
@@ -63,7 +61,6 @@
                 <stop offset="100%" stop-color="#102d5c" />
             </radialGradient>
 
-
             <!-- Mars -->
             <radialGradient id="marsGradient" cx="30%" cy="25%">
                 <stop offset="0%" stop-color="#ffad80" />
@@ -71,7 +68,6 @@
                 <stop offset="75%" stop-color="#a83f32" />
                 <stop offset="100%" stop-color="#63251f" />
             </radialGradient>
-
 
             <!-- Jupiter -->
             <radialGradient id="jupiterGradient" cx="30%" cy="25%">
@@ -83,7 +79,6 @@
                 <stop offset="100%" stop-color="#583827" />
             </radialGradient>
 
-
             <!-- Saturn -->
             <radialGradient id="saturnGradient" cx="30%" cy="25%">
                 <stop offset="0%" stop-color="#fff0c4" />
@@ -92,7 +87,6 @@
                 <stop offset="100%" stop-color="#78643e" />
             </radialGradient>
 
-
             <!-- Uranus -->
             <radialGradient id="uranusGradient" cx="30%" cy="25%">
                 <stop offset="0%" stop-color="#d5ffff" />
@@ -100,7 +94,6 @@
                 <stop offset="75%" stop-color="#64bfc3" />
                 <stop offset="100%" stop-color="#397f87" />
             </radialGradient>
-
 
             <!-- Neptune -->
             <radialGradient id="neptuneGradient" cx="30%" cy="25%">
@@ -113,162 +106,45 @@
         </defs>
 
 
-       
         <!-- SUN -->
-       
+        <circle id="sun" cx="10" cy="250" r="105" fill="url(#sunGradient)" />
 
-        <circle
-            id="sun"
-            cx="10"
-            cy="250"
-            r="105"
-            fill="url(#sunGradient)"
-        />
-
-
-       
         <!-- MERCURY -->
-       
+        <circle id="mercury" cx="180" cy="370" r="20" fill="url(#mercuryGradient)" />
 
-        <circle
-            id="mercury"
-            cx="180"
-            cy="370"
-            r="20"
-            fill="url(#mercuryGradient)"
-        />
-
-
-       
         <!-- VENUS -->
-       
+        <circle id="venus" cx="252" cy="220" r="28" fill="url(#venusGradient)" />
 
-        <circle
-            id="venus"
-            cx="252"
-            cy="220"
-            r="28"
-            fill="url(#venusGradient)"
-        />
-
-
-       
         <!-- EARTH -->
-       
+        <circle id="earth" cx="334" cy="310" r="36" fill="url(#earthGradient)" />
 
-        <circle
-            id="earth"
-            cx="334"
-            cy="310"
-            r="36"
-            fill="url(#earthGradient)"
-        />
-
-
-       
         <!-- MARS -->
-       
+        <circle id="mars" cx="420" cy="390" r="25" fill="url(#marsGradient)" />
 
-        <circle
-            id="mars"
-            cx="420"
-            cy="390"
-            r="25"
-            fill="url(#marsGradient)"
-        />
-
-
-       
         <!-- JUPITER -->
-       
+        <circle id="jupiter" cx="480" cy="240" r="74" fill="url(#jupiterGradient)" />
 
-        <circle
-            id="jupiter"
-            cx="480"
-            cy="240"
-            r="74"
-            fill="url(#jupiterGradient)"
-        />
-
-
-       
         <!-- SATURN RINGS -->
-       
+        <ellipse id="saturn-ring-outer" cx="580" cy="85" rx="85" ry="23"
+            fill="none" stroke="#b9a675" stroke-width="5"
+            transform="rotate(-20 580 85)" />
 
-        <ellipse
-            id="saturn-ring-outer"
-            cx="580"
-            cy="85"
-            rx="85"
-            ry="23"
-            fill="none"
-            stroke="#b9a675"
-            stroke-width="5"
-            transform="rotate(-20 580 85)"
-        />
+        <ellipse id="saturn-ring-middle" cx="580" cy="85" rx="75" ry="19"
+            fill="none" stroke="#dfcd9b" stroke-width="4"
+            transform="rotate(-20 580 85)" />
 
-        <ellipse
-            id="saturn-ring-middle"
-            cx="580"
-            cy="85"
-            rx="75"
-            ry="19"
-            fill="none"
-            stroke="#dfcd9b"
-            stroke-width="4"
-            transform="rotate(-20 580 85)"
-        />
+        <ellipse id="saturn-ring-inner" cx="580" cy="85" rx="64" ry="15"
+            fill="none" stroke="#9d895e" stroke-width="3"
+            transform="rotate(-20 580 85)" />
 
-        <ellipse
-            id="saturn-ring-inner"
-            cx="580"
-            cy="85"
-            rx="64"
-            ry="15"
-            fill="none"
-            stroke="#9d895e"
-            stroke-width="3"
-            transform="rotate(-20 580 85)"
-        />
-
-
-       
         <!-- SATURN -->
-       
+        <circle id="saturn" cx="580" cy="85" r="55" fill="url(#saturnGradient)" />
 
-        <circle
-            id="saturn"
-            cx="580"
-            cy="85"
-            r="55"
-            fill="url(#saturnGradient)"
-        />
-
-
-       
         <!-- URANUS -->
-       
+        <circle id="uranus" cx="682" cy="360" r="36" fill="url(#uranusGradient)" />
 
-        <circle
-            id="uranus"
-            cx="682"
-            cy="360"
-            r="36"
-            fill="url(#uranusGradient)"
-        />
-
-
-       
         <!-- NEPTUNE -->
-       
-
-        <circle
-            id="neptune"
-            cx="740"
-            cy="150"
-            r="34"
-            fill="url(#neptuneGradient)"
-        />
+        <circle id="neptune" cx="740" cy="150" r="34" fill="url(#neptuneGradient)" />
 
     </svg>
 
@@ -276,7 +152,7 @@
     <!-- Tone.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
-    <!-- Your JavaScript -->
+    <!-- Prototype 4 JavaScript -->
     <script src="prototype4-script.js"></script>
 
 </body>
