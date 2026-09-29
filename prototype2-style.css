@@ -1,0 +1,126 @@
+
+* !!!!! */
+/* galaxy background */
+body {
+    background-color: var(--colour-2);
+
+    background-image: url("assets/images/galaxy-bg-img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: var(--colour-1);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+
+    padding: 1rem;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #03040d;
+}
+
+#sky {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    touch-action: none;      /* stops the page scrolling while dragging on touch screens */
+    user-select: none;
+}
+
+/* Pitch lines */
+.lane {
+    stroke: #ffffff;
+    stroke-opacity: 0.08;
+    stroke-width: 1;
+}
+
+/* Planets */
+.planet {
+    cursor: pointer;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.planet:hover {
+    transform: scale(1.1);
+}
+
+.planet.active {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+}
+
+/* Trail dots: solid at first, fade into a ring, then vanish */
+.dot {
+    stroke-width: 2;
+    pointer-events: none;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: dotToRing 2.5s ease-out forwards;
+}
+
+@keyframes dotToRing {
+    0% {
+        fill-opacity: 0.9;
+        stroke-opacity: 1;
+        opacity: 1;
+        transform: scale(1);
+    }
+    40% {
+        fill-opacity: 0;
+        stroke-opacity: 1;
+        opacity: 0.9;
+    }
+    100% {
+        fill-opacity: 0;
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+/* Intro popup */
+#introDialog {
+    max-width: 24rem;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    background: #14162b;
+    color: #f2f2f7;
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+#introDialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#introDialogCloseButton {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background: #ffd83d;
+    color: #1a1a1a;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .planet,
+    .dot {
+        transition: none;
+    }
+}
