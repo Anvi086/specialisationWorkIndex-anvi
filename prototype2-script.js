@@ -1,4 +1,4 @@
-// Prototype 4 - Glow
+// Prototype 2 - Glow
 // tapping a planet plays its note AND makes it glow (visual feedback)
 
 // the intro pop-up modal
