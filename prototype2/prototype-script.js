@@ -1,68 +1,92 @@
-// Prototype 2 - Glow
-// tapping a planet plays its note AND makes it glow (visual feedback)
+console.log("Prototype 2 JS loaded");
 
-// the intro pop-up modal
+document.addEventListener("DOMContentLoaded", () => {
 
-const introModal = document.getElementById("introDialog");
+    // INTRO POPUP
+    const introModal = document.getElementById("introDialog");
+    const introCloseButton = document.getElementById("introDialogCloseButton");
 
-const introCloseButton = document.getElementById(
-    "introDialogCloseButton"
-);
+    introModal.showModal();
 
-// Show popup when page opens
-introModal.showModal();
+    // attached first so the OK button still works if Tone.js fails to load
+    introCloseButton.addEventListener("click", async () => {
+        try {
+            await Tone.start();
+        } catch (error) {
+            console.error("Audio could not start:", error);
+        }
+        introModal.close();
+    });
 
-// Close popup when OK is clicked
-introCloseButton.addEventListener("click", async () => {
-    await Tone.start(); // browsers need a click before audio can play
-    introModal.close();
-});
+    // TONE.JS SYNTH
+    const synth = new Tone.Synth().toDestination();
 
-// the tone js synth for the planets
+    // Close popup and start audio
+    introCloseButton.addEventListener("click", async () => {
 
-const synth = new Tone.Synth().toDestination();
+        await Tone.start();
 
-// the glow feedback
+        console.log("Audio state:", Tone.context.state);
 
-function glowPlanet(planet) {
-    // restart the animation if the planet is tapped again quickly
-    planet.classList.remove("glow");
-    void planet.getBoundingClientRect();
-    planet.classList.add("glow");
-}
+        introModal.close();
+    });
 
-// remove the glow class once the animation has finished
-document.querySelectorAll("#sky circle").forEach((planet) => {
-    planet.addEventListener("animationend", () => {
+
+    // GLOW FUNCTION
+    function glowPlanet(planet) {
         planet.classList.remove("glow");
+
+        void planet.getBoundingClientRect();
+
+        planet.classList.add("glow");
+    }
+
+
+    // REMOVE GLOW AFTER ANIMATION
+    document.querySelectorAll("#sky circle").forEach((planet) => {
+
+        planet.addEventListener("animationend", () => {
+            planet.classList.remove("glow");
+        });
+
     });
-});
 
-// each planet plays a different note and glows when clicked
 
-const planetNotes = {
-    mercury: "C4",
-    venus: "D4",
-    earth: "E4",
-    mars: "F4",
-    jupiter: "G4",
-    saturn: "A4",
-    uranus: "B4",
-    neptune: "C5"
-};
+    // PLANET NOTES
+    const planetNotes = {
+        mercury: "C4",
+        venus: "D4",
+        earth: "E4",
+        mars: "F4",
+        jupiter: "G4",
+        saturn: "A4",
+        uranus: "B4",
+        neptune: "C5"
+    };
 
-Object.entries(planetNotes).forEach(([id, note]) => {
-    const planet = document.getElementById(id);
 
-    planet.addEventListener("click", () => {
-        synth.triggerAttackRelease(note, "8n");
-        glowPlanet(planet);
+    // PLANET CLICK
+    Object.entries(planetNotes).forEach(([id, note]) => {
+
+        const planet = document.getElementById(id);
+
+        planet.addEventListener("click", async () => {
+
+            await Tone.start();
+
+            synth.triggerAttackRelease(note, "8n");
+
+            glowPlanet(planet);
+        });
+
     });
-});
 
-// the sun has no note, it just glows
-const sun = document.getElementById("sun");
 
-sun.addEventListener("click", () => {
-    glowPlanet(sun);
+    // SUN
+    const sun = document.getElementById("sun");
+
+    sun.addEventListener("click", () => {
+        glowPlanet(sun);
+    });
+
 });
