@@ -211,3 +211,17 @@ cursor: pointer;
 dialog button:hover {
 background: #d372f6;
 }
+
+#instructions {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 10;
+    pointer-events: none;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Work Sans', sans-serif;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+}
