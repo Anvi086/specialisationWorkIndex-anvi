@@ -1,4 +1,4 @@
-// ---------- Intro popup ----------
+// Intro popup
 const introDialog = document.getElementById('introDialog');
 const closeButton = document.getElementById('introDialogCloseButton');
 
@@ -10,7 +10,7 @@ closeButton.addEventListener('click', async () => {
 });
 
 
-// ---------- Sound ----------
+// Sound 
 // PolySynth so a preview click and the loop can sound at the same time
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 synth.volume.value = -10;
@@ -18,7 +18,7 @@ synth.volume.value = -10;
 Tone.Transport.bpm.value = 100;
 
 
-// ---------- Planets ----------
+//  Planets 
 // One planet = one step of the loop = one note of do re mi fa sol la ti do
 const planets = [
     { name: 'mercury', note: 'C4', size: 14 },
@@ -36,7 +36,7 @@ const rings = document.getElementById('rings');
 const NS = 'http://www.w3.org/2000/svg';
 
 
-// ---------- Draw the orbits and planets ----------
+// Draw the orbits and planets
 planets.forEach((planet, i) => {
     const rx = 95 + i * 36;        // each ring is wider than the last
     const ry = rx * 0.55;          // squashed into an ellipse
@@ -76,7 +76,7 @@ planets.forEach((planet, i) => {
 });
 
 
-// ---------- The loop ----------
+// The loop
 let step = 0;
 
 new Tone.Loop(time => {
@@ -97,7 +97,7 @@ new Tone.Loop(time => {
 }, '8n').start(0);
 
 
-// ---------- The sun = start / stop ----------
+// The sun = start / stop
 const sun = document.getElementById('sun');
 let isPlaying = false;
 

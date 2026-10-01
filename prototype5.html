@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prototype 3 - Orbit Loop</title>
+    <title>Prototype 5 - Orbit Loop</title>
 
-    <link rel="stylesheet" href="prototype3-style.css">
+    <link rel="stylesheet" href="prototype5-style.css">
 </head>
 
 <body>
@@ -24,6 +24,11 @@
     <p id="instructions">Tap on the Sun to start and then click on the planets to loop them </p>
 
     
+
+
+<!-- I used the svg code to make the circles and give them colour, but they were looking too plat so i asked claude ai to 
+ help me with giving it some more dimension and looked up how to give the circles a radial gradient-->
+
     <svg id="sky" viewBox="0 0 800 500">
 
         <defs>
@@ -95,13 +100,11 @@
 
         </defs>
 
-        <!-- Orbit rings (drawn by the script) -->
+        <!-- Orbit rings -->
         <g id="rings"></g>
 
         <!-- The sun is the start / stop button -->
         <circle id="sun" cx="400" cy="250" r="50" fill="url(#sunGradient)" />
-
-        <!-- The planets are added by the script, on top of everything above -->
 
     </svg>
 
@@ -109,7 +112,7 @@
     <!-- Tone.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
-    <script src="prototype3-script.js"></script>
+    <script src="prototype5-script.js"></script>
 
 </body>
 </html>
