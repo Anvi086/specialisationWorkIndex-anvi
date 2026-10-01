@@ -32,6 +32,7 @@
 /* galaxy background */
 body {
     background-color: var(--colour-2);
+    background-color:var(--colour-2);
 
     background-image: url("assets/images/galaxy-bg-img.jpg");
     background-size: cover;
@@ -117,4 +118,5 @@ dialog button {
 
 
 dialog button:hover {
-    background: #d372f6;
+ background: #d372f6;
+}
