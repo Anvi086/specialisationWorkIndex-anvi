@@ -33,7 +33,7 @@
 body {
     background-color:var(--colour-2);
 
-    background-image: url("assets/images/galaxy-bg-img.jpg");
+    background-image: url("../assets/images/galaxy-bg-img.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -118,4 +118,15 @@ dialog button {
 
 dialog button:hover {
  background: #d372f6;
+}
+
+#instructions {
+position: fixed;
+top: 1rem;
+left: 50%;
+transform: translateX(-50%);
+margin: 0;
+z-index: 10;
+pointer-events: none;
+text-align: center;
 }
