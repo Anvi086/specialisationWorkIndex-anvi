@@ -1,0 +1,45 @@
+Anvi086,Thu Oct 1 11:16:30 2026 +1000,Update prototype1-style.css,
+Anvi086,Thu Oct 1 11:16:20 2026 +1000,fixed more broken tags,
+Anvi086,Tue Sep 29 09:52:42 2026 +1000,undo,i was trying to get the links working but it didnt work so i undid the deleted files
+
+Anvi086,Tue Sep 29 09:39:57 2026 +1000,added bg img,
+Anvi086,Tue Sep 29 09:37:53 2026 +1000,update trial,
+Anvi086,Tue Sep 29 09:34:54 2026 +1000,changing the name,
+Anvi086,Tue Sep 29 08:58:29 2026 +1000,updated the code,
+Anvi086,Tue Sep 29 08:11:49 2026 +1000,fixed broken tags,
+Anvi086,Tue Sep 29 01:47:03 2026 +1000,gave dimension,I gave the circles gradients so that they would have some more dimension and not look very flat and i gave Saturn its rings
+
+Anvi086,Tue Sep 29 01:25:20 2026 +1000,added the toggle button,
+Anvi086,Tue Sep 29 01:12:42 2026 +1000,added sound to the planets,I added sound from tone.js to the planes and the background colour
+
+Anvi086,Tue Sep 29 00:23:56 2026 +1000,added the planets for the 1st prototype,I added circles and adjusted them so that they would look like planets
+
+Anvi086,Mon Sep 28 23:39:48 2026 +1000,.,
+Anvi086,Mon Sep 28 23:12:49 2026 +1000,created prototype files,
+Anvi086,Mon Sep 28 22:36:41 2026 +1000,.,
+Anvi086,Mon Sep 28 22:27:07 2026 +1000,updates,
+Anvi086,Mon Sep 28 22:26:38 2026 +1000,Update assignment2.html,
+Anvi086,Mon Sep 28 22:21:20 2026 +1000,more trial and error,
+Anvi086,Mon Sep 28 22:14:11 2026 +1000,trying to fix the links,
+Anvi086,Mon Sep 28 21:56:17 2026 +1000,checking the links,
+Anvi086,Mon Sep 28 21:37:03 2026 +1000,added in the prototype page links,
+Anvi086,Mon Sep 28 16:36:53 2026 +1000,added the basic code for the 2nd assignment,I added the main code for the 2nd assignment along with the short paragraphs explaining what the each prototype will entail
+
+Anvi086,Tue Aug 18 17:34:59 2026 +1000,completed assignment 1,made changes to the code. added the images and text and gave them appropriate spacing. and finetuned the assignment
+
+Anvi086,Thu Jul 30 10:51:14 2026 +1000,added basic structure to a1,Added basic sections to A1
+
+Anvi086,Thu Jul 30 10:45:50 2026 +1000,init assignment 1,created the html page for the assignment and linked them together
+
+Anvi086,Thu Jul 23 12:10:53 2026 +1000,work index init,we changed out the details and favicon for our own. we also linked in our own github.
+
+Patrick McMahon,Thu Jul 16 11:20:02 2026 +1000,fixed assignment links,removed id refs so we can add pages
+
+Patrick McMahon,Thu Jul 16 10:45:35 2026 +1000,change favicon and remove unnecessary sections,
+hase,Fri Jun 5 13:00:32 2026 +1000,moved to flex in flex,grid wasn't quite cutting it so i moved to a nested flex situation for the main section. now hopefully should all work as intended
+
+hase,Fri Jun 5 12:03:25 2026 +1000,more responsiveq,fixed grid issues of overflow. added a max width to text
+
+hase,Fri Jun 5 11:10:13 2026 +1000,responsiveness,added in grid template for the four areas to shift based on screen width
+
+hase,Fri Jun 5 09:14:59 2026 +1000,init,set up and linked basic files
