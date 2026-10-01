@@ -3,7 +3,17 @@ body {
     margin: 0;
     height: 100%;
     overflow: hidden;
-    background: #03040d;
+}
+
+/* Galaxy background (separate properties, so nothing gets reset) */
+body {
+    background-color: #03040d;
+
+    background-image: url("assets/images/galaxy-bg-img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #sky {
