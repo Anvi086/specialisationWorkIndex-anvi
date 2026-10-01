@@ -31,7 +31,6 @@
 /* !!!!! */
 /* galaxy background */
 body {
-    background-color: var(--colour-2);
     background-color:var(--colour-2);
 
     background-image: url("assets/images/galaxy-bg-img.jpg");
