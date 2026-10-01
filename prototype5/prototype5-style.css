@@ -1,0 +1,123 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Galaxy background (separate properties, so nothing gets reset) */
+body {
+    background-color: #03040d;
+
+    background-image: url("../assets/images/galaxy-bg-img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#sky {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+}
+
+/* Orbit rings */
+.ring {
+    fill: none;
+    stroke: #ffffff;
+    stroke-opacity: 0.2;
+    stroke-width: 1;
+}
+
+/* Planets: dim = off, bright with outline = on */
+.planet {
+    cursor: pointer;
+    opacity: 0.45;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.planet.on {
+    opacity: 1;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+/* The planet the loop is currently on */
+.planet.playing {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 10px #ffffff);
+}
+
+/* Sun button */
+#sun {
+    cursor: pointer;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+#sun:hover {
+    filter: drop-shadow(0 0 14px #ffd83d);
+}
+
+#sun.playing {
+    animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    to {
+        transform: scale(1.08);
+    }
+}
+
+/* Intro popup */
+#introDialog {
+    max-width: 24rem;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    background: #14162b;
+    color: #f2f2f7;
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+#introDialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#introDialogCloseButton {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background: #ffd83d;
+    color: #1a1a1a;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .planet,
+    #sun.playing {
+        transition: none;
+        animation: none;
+    }
+}
+
+#instructions {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 10;
+    pointer-events: none;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Work Sans', sans-serif;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+}
