@@ -1,4 +1,4 @@
-// Prototype 5 - Ripples
+// Prototype 3 - Ripples
 // tapping a planet plays its note AND sends ripples spreading out from it
 
 // the intro pop-up modal
