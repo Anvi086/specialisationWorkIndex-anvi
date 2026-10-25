@@ -34,12 +34,115 @@
         <nav>
             <a href="assignment1.html">Assignment 1</a>
             <a href="assignment2.html">Assignment 2</a>
+            <a href="documentation.html">Final Project Documentation</a>
             <a href="https://au.miro.com/app/board/u3jVOf4l154=/">Community of Practice</a>
         </nav>
 
         <main>
             <section id="intro-section">
                 <p> Welcome to my Interface Design and Development work index! This website will documents my projects, design process, and community contributions. </p>
+            </section>
+
+            <!-- ===== FINAL PROJECT ===== -->
+
+            <section id="synopsis">
+                <h2>Project synopsis</h2>
+                <p>
+                    <strong>Solar System Plinker</strong> is a browser-based audio instrument
+                    where the solar system is the interface. Each planet is its own note,
+                    and the Sun is the start and stop button for a looping tune.
+                    Tapping a planet plays it and sends coloured ripples across the sky.
+                    Holding a planet and dragging it up or down changes its pitch, shown
+                    with glowing pitch lines and a trail of dots.
+                    Big pitch buttons move every note higher or lower, and a field of stars
+                    in the background glows in response to every touch and every ripple.
+                </p>
+                <p>
+                    It is built with HTML, CSS, SVG and JavaScript, using
+                    <a href="https://tonejs.github.io/" target="_blank">Tone.js</a>
+                    for the sound.
+                </p>
+            </section>
+
+            <section id="design-scenario">
+                <h2>Design scenario</h2>
+                <!-- !!!!! -->
+                <!-- replace this with the exact wording of the design scenario from your brief if it differs -->
+                <p>
+                    My design scenario is an audio instrument for a toddler: someone who
+                    can't read yet, has small hands, taps and drags with whole fingers,
+                    and learns by trying things and seeing what happens.
+                    The instrument also had to work on whatever screen it was opened on,
+                    whether that was a parent's phone, a tablet or a laptop.
+                </p>
+            </section>
+
+            <section id="design-response">
+                <h2>How the finished project responds to the scenario</h2>
+                <ul>
+                    <li>
+                        <strong>No reading needed.</strong> The instructions are a large, glowing
+                        banner with a big icon, and a pulsing ring and bouncing hand show exactly
+                        what to touch next. The steps change as the child plays.
+                    </li>
+                    <li>
+                        <strong>Nothing can sound wrong.</strong> Every note comes from a
+                        pentatonic scale, so any combination of planets sounds pleasant.
+                    </li>
+                    <li>
+                        <strong>Every touch gets a reaction.</strong> Sound, ripples, glowing planets
+                        and twinkling stars all respond straight away, which teaches cause and effect.
+                    </li>
+                    <li>
+                        <strong>Big, forgiving targets.</strong> Planets and buttons are large, and a quick
+                        tap is held long enough to be heard.
+                    </li>
+                    <li>
+                        <strong>Adaptive layout.</strong> The sky scales to any screen size, the layout is
+                        a column that rearranges on short screens, touch dragging doesn't scroll the page,
+                        and animations are reduced for people who prefer less motion.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="project-link">
+                <h2>The finished project</h2>
+                <!-- !!!!! -->
+                <!-- update this link if the instrument lives in a different folder -->
+                <p>
+                    <a class="project-link" href="prototype6.html">Play Solar System Plinker</a>
+                </p>
+                <p>
+                    Turn your volume on first. The instrument will ask you to check it.
+                </p>
+            </section>
+
+            <section id="documentation-summary">
+                <h2>Documentation</h2>
+                <p>
+                    The full write-up is on its own page:
+                    <a href="documentation.html">Final Project Documentation</a>.
+                    In short, the core interactive features are:
+                </p>
+                <ul>
+                    <li><strong>Tap</strong> a planet to play it and switch it on or off for the loop.</li>
+                    <li><strong>Hold and drag</strong> a planet up or down to change its note.</li>
+                    <li><strong>Tap the Sun</strong> to start and stop the loop.</li>
+                    <li><strong>Pitch buttons</strong> shift every note up or down an octave.</li>
+                    <li><strong>Step-by-step hints</strong> guide a toddler through the instrument.</li>
+                    <li><strong>Glowing stars</strong> react to touch and ripples.</li>
+                </ul>
+                <p>
+                    The documentation also covers my extended technique, and the design system
+                    (colour, type, spacing, components and responsive behaviour).
+                </p>
+            </section>
+
+            <section id="commit-logs">
+                <h2>Commit log for the final version</h2>
+                <!-- !!!!! -->
+                <!-- paste the output of:  git log --oneline  (newest first) between the <pre> tags below -->
+                <pre><code>Paste the commit log for the final version here.</code></pre>
             </section>
         </main>
 
