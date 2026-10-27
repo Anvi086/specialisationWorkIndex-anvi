@@ -19,6 +19,8 @@
 
 
 /* this swaps the colour order to account for user's OS dark mode */
+/* (right now both versions use the same two colours, so nothing changes.
+   it's here in case I want a light theme later) */
 @media (prefers-color-scheme: dark) {
   :root {
     --colour-1: #f0f6f0;
@@ -29,13 +31,14 @@
 
 /* galaxy background */
 body {
+  /* dark fallback colour in case the image doesn't load */
   background-color: var(--colour-2);
 
   background-image: url("assets/images/galaxy-bg-img.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; /* stays put while the page moves */
 
   color: var(--colour-1);
   font-family: 'Work Sans', sans-serif;
@@ -55,18 +58,18 @@ body {
 /* instructions banner on top, solar system underneath */
 #layout {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* sits above the star layer, which is z-index 0 */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 2rem); /* full screen height minus the body padding */
 }
 
 
 /* SVG */
 #sky {
-  flex: 1;
-  min-height: 0;
+  flex: 1; /* takes whatever height the two panels leave over */
+  min-height: 0; /* without this a flex child won't shrink below its content */
   width: 100%;
   overflow: visible; /* lets the ripples spread past the edges */
 }
@@ -83,7 +86,7 @@ body {
 #uranus,
 #neptune {
   cursor: pointer;
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease; /* so the glow fades in and out */
 }
 
 
@@ -102,6 +105,7 @@ body {
 
 
 /* planets that are switched on keep a glow */
+/* (the js adds and removes this class when a planet is tapped) */
 .on {
   filter: drop-shadow(0 0 14px var(--glow-halo));
 }
@@ -120,7 +124,7 @@ body {
 
 /* ripple rings that spread out from a tapped planet */
 .ripple {
-  fill: none;
+  fill: none; /* just an outline, no solid circle */
   stroke-width: 4;
   vector-effect: non-scaling-stroke; /* keeps the line the same thickness while it grows */
   pointer-events: none;              /* taps go through to the planets */
@@ -128,6 +132,8 @@ body {
   transform-box: fill-box;
   transform-origin: center;          /* grow outward from the middle */
 
+  /* "backwards" holds the first frame during the delay, so the later rings
+     stay invisible instead of flashing at full size before they start */
   animation: ripple 1.4s ease-out backwards;
 }
 
@@ -138,13 +144,15 @@ body {
   }
 
   100% {
-    transform: scale(3);
+    transform: scale(3); /* grows to three times its starting size */
     opacity: 0;
   }
 }
 
 
 /* i used each planet's colours to make the ripples so that it looks cohesive */
+/* the js reads --glow-halo for the ripple and star colours, and the
+   glow filters above use it too */
 #sun {
   --glow-core: #fffbd0;
   --glow-halo: #ffd83d;
@@ -194,18 +202,19 @@ body {
 /* twinkling background stars */
 #stars {
   position: fixed;
-  inset: 0;
+  inset: 0; /* stretches over the whole window */
   z-index: 0;
-  pointer-events: none;
+  pointer-events: none; /* so it never blocks a tap */
   overflow: hidden;
 }
 
+/* the stars themselves are made by the js, this is just how they look */
 .star {
   position: absolute;
   border-radius: 50%;
   background: #ffffff;
   opacity: 0.35;
-  animation: twinkle 3s ease-in-out infinite;
+  animation: twinkle 3s ease-in-out infinite; /* js changes the timing per star */
 }
 
 @keyframes twinkle {
@@ -215,13 +224,13 @@ body {
 
 /* when a planet plays, a few stars flash in that planet's colour */
 .star.flash {
-  background: var(--star-colour, #ffffff);
-  box-shadow: 0 0 6px 2px var(--star-colour, #ffffff);
+  background: var(--star-colour, #ffffff); /* white if no colour was set */
+  box-shadow: 0 0 3px 1px var(--star-colour, #ffffff);
   animation: starFlash 0.9s ease-out;
 }
 
 @keyframes starFlash {
-  0%   { opacity: 1;   transform: scale(2); }
+  0%   { opacity: 1;   transform: scale(1.5); }
   100% { opacity: 0.35; transform: scale(1); }
 }
 
@@ -230,10 +239,10 @@ body {
 #steps,
 #pitchPanel {
   box-sizing: border-box;
-  background: rgba(10, 8, 30, 0.45);
+  background: rgba(10, 8, 30, 0.45); /* mostly see-through so the galaxy shows */
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 18px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); /* softly blurs whatever is behind the panel */
   color: #ffffff;
 }
 
@@ -247,21 +256,23 @@ body {
 #steps p,
 #pitchPanel p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75); /* a bit dimmer than the headings */
 }
 
 
 /* how to play: one slim strip across the top */
 #steps {
-  flex: none;
+  flex: none; /* don't let the layout squash or stretch it */
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* the three steps stack up on narrow screens */
   gap: 0.5rem 0;
   padding: 0.5rem 0.6rem;
 }
 
 .step {
   flex: 1 1 230px;
+
+  /* a small grid: number on the left, then icon and heading, then the text underneath */
   display: grid;
   grid-template-columns: auto auto 1fr;
   grid-template-rows: auto auto;
@@ -271,12 +282,14 @@ body {
   padding: 0.1rem 1rem;
 }
 
+/* thin divider line between the steps */
 .step + .step {
   border-left: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* the yellow numbered circle */
 .step-number {
-  grid-row: 1 / 3;
+  grid-row: 1 / 3; /* spans both rows so it sits beside the heading and the text */
   width: 1.9rem;
   height: 1.9rem;
   border-radius: 50%;
@@ -294,12 +307,13 @@ body {
   height: 24px;
 }
 
+/* clamp(min, ideal, max) lets the text grow with the window but only so far */
 .step h2 {
   font-size: clamp(1rem, 1.4vw, 1.2rem);
 }
 
 .step p {
-  grid-column: 2 / -1;
+  grid-column: 2 / -1; /* starts after the number and runs to the end */
   font-size: clamp(0.85rem, 1.1vw, 1rem);
   line-height: 1.3;
 }
@@ -327,11 +341,12 @@ body {
   font-size: clamp(0.85rem, 1.1vw, 1rem);
 }
 
+/* the Lower and Higher buttons */
 .pitch-button {
   flex: none;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.4rem; /* space between the arrow and the word */
   height: 2.6rem;
   padding: 0 1.1rem;
 
@@ -340,6 +355,7 @@ body {
   background: rgba(70, 104, 214, 0.5);
   color: #ffffff;
 
+  /* buttons don't inherit the page font by default, so it's set again here */
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
@@ -354,11 +370,11 @@ body {
 }
 
 .pitch-button:hover {
-  background: rgba(70, 104, 214, 0.85);
+  background: rgba(70, 104, 214, 0.85); /* same blue, less see-through */
 }
 
 .pitch-button:active {
-  transform: scale(0.96);
+  transform: scale(0.96); /* a tiny squash so it feels pressed */
 }
 
 
@@ -367,24 +383,26 @@ body {
   position: relative;
   flex: 1 1 220px;
   min-width: 220px;
-  height: 44px;
+  height: 44px; /* 44px is a comfortable size for a finger to tap */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* spreads the five dots evenly */
 }
 
+/* the grey track that runs behind the dots */
 .pitch-line {
   position: absolute;
-  left: 22px;
+  left: 22px;  /* half a dot's width, so the line starts at the first dot's centre */
   right: 22px;
   top: 50%;
   height: 4px;
-  margin-top: -2px;
+  margin-top: -2px; /* pulls it up by half its height to centre it */
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
+/* the blue part of the track, the js sets its width as a percentage */
 .pitch-fill {
   height: 100%;
   width: 50%;
@@ -392,6 +410,7 @@ body {
   transition: width 0.2s ease;
 }
 
+/* each stop is a big invisible button, and the visible dot is drawn on top with ::before */
 .pitch-stop {
   position: relative;
   flex: none;
@@ -403,6 +422,7 @@ body {
   cursor: pointer;
 }
 
+/* the little dot you can actually see */
 .pitch-stop::before {
   content: "";
   position: absolute;
@@ -411,17 +431,19 @@ body {
   width: 14px;
   height: 14px;
   box-sizing: border-box;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* centres the dot inside the button */
   border-radius: 50%;
   border: 2px solid #9fb2ff;
   background: rgba(10, 8, 30, 0.8);
   transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
 }
 
+/* dots up to the current pitch are filled in */
 .pitch-stop.filled::before {
   background: #9fb2ff;
 }
 
+/* the dot you're on is bigger and white */
 .pitch-stop.selected::before {
   width: 24px;
   height: 24px;
@@ -430,6 +452,9 @@ body {
 }
 
 
+/* for people who've asked their device to cut down on movement:
+   the animations are shortened to almost nothing instead of removed,
+   so the animationend events in the js still fire and clean things up */
 @media (prefers-reduced-motion: reduce) {
   .ripple {
     animation-duration: 0.01s;
@@ -449,7 +474,7 @@ body {
 /* intro popup */
 dialog {
   width: 460px;
-  max-width: 90vw;
+  max-width: 90vw; /* stops it overflowing on a small phone */
   padding: 30px;
 
   border: 2px solid white;
@@ -488,6 +513,7 @@ dialog button {
 }
 
 
+/* fills in purple on hover */
 dialog button:hover {
   background: #d372f6;
 }
