@@ -1,23 +1,19 @@
 /* !!!!! */
-/* add in your own font imports here */
-/* remember to update them in the rest of the CSS : eg the body selector */
+/* Added font imports here. */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* !!!!! */
-/* change out, and/or add colours to the colour scheme */
+/* Changeed the colours of the colour scheme here. */
 :root {
     /* basic 2-bit palette from 1bit Monitor Glow Palette by Polyducks */
     /* https://lospec.com/palette-list/1bit-monitor-glow */
     --colour-1: #1d1f1f;
     --colour-2: #f0f6f0;
 
-    /* link colour, works on both light and dark backgrounds */
+    /* Link colour, works on both light and dark backgrounds. */
     --colour-link: #d372f6;
 }
 
-/* this swaps the colour order to account for user's OS dark mode */
-/* !!!!! */
-/* remember to update the colours here too to reflect the above changes */
 @media (prefers-color-scheme: dark) {
     :root {
         --colour-1: #f0f6f0;
@@ -57,7 +53,7 @@ nav {
     align-items: flex-end;
 }
 
-/* links inside the nav use the link colour, no underline until hovered */
+/* Navigation links use the link colour and are underlined on hover. */
 nav a {
     color: var(--colour-link);
     text-decoration: none;
@@ -67,7 +63,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* any other links in the page (e.g. inside paragraphs) use the same colour */
+/* Other links on the page, including links in paragraphs, use the same colour. */
 a {
     color: var(--colour-link);
 }
@@ -76,8 +72,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 800px; /* keeps line length readable */
-    margin: 0 auto; /* centres the main content block on the page */
+    width: 100%;
+    max-width: 800px; /* Keeps line length readable. */
+    margin: 0 auto; /* Centres the main content block on the page. */
+}
+
+/* Work-index sections fill the available main-content width. */
+main > section {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 aside {
@@ -91,25 +95,26 @@ footer {
     margin-block-start: 3rem;
 }
 
-/* technique from Kevin Powell */
+/* Spacing technique explained by Kevin Powell. */
 /* https://youtu.be/CU8Plk-53RU?si=zMpP0Pfbg1SaXeDB&t=255 */
-/* longer post about how this works and the * + * selector */
+/* More about how this works and the * + * selector: */
 /* https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/ */
 .prose > * + * {
     margin-block-start: var(--prose-flow, 1em);
 }
 
-/* breakpoints from Material Design Spec https://m3.material.io/foundations/layout/breakpoints/overview */
-/* while sometimes mobile first is recommended, as we will be focused on desktop, we will start there */
+/* Breakpoints from the Material Design Spec. */
+/* https://m3.material.io/foundations/layout/breakpoints/overview */
+/* Although mobile-first is sometimes recommended, this project starts with desktop because it focuses on desktop. */
 
-/* assumed base sizing is large (1200–1599px) : desktop  */
+/* Base sizing is large (1200–1599px): desktop. */
 
-/* extra-large breakpoint : desktop, ultrawide monitors */
+/* Extra-large breakpoint: desktop and ultrawide monitors. */
 @media (width > 1600px) {
 
 }
 
-/* expanded breakpoint : phone or tablet in landscape, desktop */
+/* Expanded breakpoint: phones or tablets in landscape and desktop. */
 @media (width < 1200px) {
     header {
         margin-block-end: 2rem;
@@ -119,7 +124,7 @@ footer {
     }
 }
 
-/* medium breakpoint : tablet in portrait */
+/* Medium breakpoint: tablets in portrait orientation. */
 @media (width < 840px) {
     header {
         margin-block-end: 1rem;
@@ -135,6 +140,8 @@ footer {
         max-width: 80rch;
         justify-content: space-between;
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.75rem;
     }
     main {
         flex: 1;
@@ -147,25 +154,45 @@ footer {
     }
 }
 
-/* compact breakpoint : phone in portrait */
+/* Compact breakpoint: phones in portrait orientation. */
 @media (width < 600px) {
+    body {
+        padding: 0.75rem;
+    }
 
+    header h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        text-align: center;
+    }
+
+    .doc-swatches {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .doc-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .doc pre {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* ===== Basic content spacing ===== */
 
-/* space between paragraphs, and easier-to-read line height */
+/* Space between paragraphs and a more readable line height. */
 p {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
-/* space between major page sections */
+/* Space between major page sections. */
 section {
     margin-bottom: 2.5rem;
 }
 
-/* space above/below main headings */
+/* Space above and below main headings. */
 h2 {
     margin-bottom: 1rem;
 }
@@ -175,7 +202,7 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
-/* space out each UI write-up in the Design Analysis section */
+/* Space around each UI write-up in the Design Analysis section. */
 article {
     margin-bottom: 2rem;
 }
@@ -192,16 +219,192 @@ li {
 
 /* ===== Design Analysis headings ===== */
 
-/* forces the "— Purpose" / "— Feedback" text onto its own line, 
-   separate from the UI name/attribution above it */
+/* Forces the "— Purpose" / "— Feedback" text onto its own line, */
+/* separate from the UI name or attribution above it. */
 .aspect {
     display: block;
     margin-top: 0.25rem;
     font-weight: normal;
 }
 
-/* spacing around images */
+/* Spacing around images. */
 img {
-    margin-bottom: 0.5rem; /* space below the image, before the caption */
-    margin-top: 1.5rem;    /* space above the image, after the paragraph before it */
+    margin-bottom: 0.5rem; /* Space below the image, before the caption. */
+    margin-top: 1.5rem;    /* Space above the image, after the preceding paragraph. */
 }
+
+
+/* ==========================================================
+   EXTRA STYLES FOR FINAL PROJECT DOCUMENTATION
+   These styles match the .doc classes used in the work-index HTML.
+   ========================================================== */
+
+/* Code snippets. */
+.doc code {
+    padding: 0.1rem 0.35rem;
+    border-radius: 5px;
+    background: rgba(128, 128, 128, 0.22);
+    font-size: 0.92em;
+}
+
+.doc pre {
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0.6rem 0 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.15);
+}
+
+.doc pre code {
+    padding: 0;
+    background: none;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Documentation headings. */
+.doc h3 {
+    margin: 1.4rem 0 0.5rem;
+}
+
+.doc h4 {
+    margin: 1.2rem 0 0.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+/* Lead and secondary text. */
+.doc-lead {
+    font-size: 1.1rem;
+}
+
+.doc-small {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* Features. */
+.doc-feature {
+    margin-top: 1.2rem;
+    padding-top: 0.2rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+.doc-feature h3 {
+    margin-top: 0.8rem;
+}
+
+/* Colour swatches. */
+.doc-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.9rem;
+    margin: 0.6rem 0 1rem;
+}
+
+.doc-swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.doc-swatch span {
+    display: block;
+    height: 56px;
+    margin-bottom: 0.3rem;
+    border-radius: 10px;
+}
+
+.doc-swatch code {
+    align-self: flex-start;
+    overflow-wrap: anywhere;
+    font-size: 0.85rem;
+}
+
+.doc-swatch small {
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+/* Cards. */
+.doc-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.9rem;
+    margin: 0.6rem 0 1rem;
+}
+
+.doc-card {
+    min-width: 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 14px;
+    background: rgba(128, 128, 128, 0.1);
+    overflow-wrap: anywhere;
+}
+
+.doc-card h4 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: 1;
+}
+
+.doc-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* Tables with the .doc-table class, plus the commit-log table inside .doc. */
+.doc-table,
+.doc details table {
+    width: 100%;
+    margin: 0.6rem 0 1rem;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.doc-table th,
+.doc-table td,
+.doc details table th,
+.doc details table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+
+/* Keeps the commit log readable on smaller screens. */
+.doc details {
+    max-width: 100%;
+}
+
+.doc details table {
+    display: block;
+    overflow-x: auto;
+    white-space: normal;
+}
+
+.doc details summary {
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+/* Type samples. */
+.doc-t-title    { font-size: 2rem;   font-weight: 700; }
+.doc-t-step     { font-size: 1.2rem; font-weight: 700; }
+.doc-t-sentence { font-size: 1rem;   opacity: 0.8; }
+.doc-t-pitch    { font-size: 1.3rem; font-weight: 700; }
+.doc-t-button   { font-size: 1.1rem; font-weight: 600; }
