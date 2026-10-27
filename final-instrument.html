@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Instrument - Solar System</title>
+
+    <link rel="stylesheet" href="final-instrument.style.css">
+</head>
+
+<body>
+
+    <!-- Intro popup -->
+    <dialog id="introDialog">
+        <p>
+            This synthesizer will make some noise, please check your
+            system's volume setting.
+        </p>
+
+        <button id="introDialogCloseButton" autofocus>OK</button>
+    </dialog>
+
+    <!-- twinkling stars (made in JS) that flash when planets play -->
+    <div id="stars" aria-hidden="true"></div>
+
+    <div id="layout">
+
+    <!-- how to play: three big steps across the top -->
+    <section id="steps" aria-label="How to play">
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <svg class="step-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 40 40" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="4.5" fill="#ffffff" stroke="none"/></svg>
+            <h2>Tap the planets</h2>
+            <p>Touch a planet to hear its note.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <svg class="step-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 40 40" fill="none" stroke="#ffd83d" stroke-width="3.5" stroke-linecap="round"><circle cx="20" cy="20" r="7" fill="#ffd83d"/><path d="M20 4 V9 M20 31 V36 M4 20 H9 M31 20 H36 M8.7 8.7 L12.2 12.2 M27.8 27.8 L31.3 31.3 M8.7 31.3 L12.2 27.8 M27.8 12.2 L31.3 8.7"/></svg>
+            <h2>Tap the Sun</h2>
+            <p>Touch the Sun to loop your notes.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <svg class="step-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 40 40" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 33 V7 M6 14 L13 7 L20 14"/><path d="M27 7 V33 M20 26 L27 33 L34 26"/></svg>
+            <h2>Higher or lower</h2>
+            <p>Change how high the notes sound.</p>
+        </div>
+
+    </section>
+
+
+    <svg id="sky" viewBox="0 0 800 500">
+
+        <!-- gradients give the planets more dimension -->
+
+        <defs>
+
+            <!-- Sun -->
+            <radialGradient id="sunGradient" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#fffbd0" />
+                <stop offset="40%" stop-color="#ffd83d" />
+                <stop offset="75%" stop-color="#f5a900" />
+                <stop offset="100%" stop-color="#d66b00" />
+            </radialGradient>
+
+            <!-- Mercury -->
+            <radialGradient id="mercuryGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#d8d6d2" />
+                <stop offset="45%" stop-color="#9e9c98" />
+                <stop offset="75%" stop-color="#686662" />
+                <stop offset="100%" stop-color="#3f3e3b" />
+            </radialGradient>
+
+            <!-- Venus -->
+            <radialGradient id="venusGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#fff0c2" />
+                <stop offset="45%" stop-color="#e8c27a" />
+                <stop offset="75%" stop-color="#c7954e" />
+                <stop offset="100%" stop-color="#8a5e2f" />
+            </radialGradient>
+
+            <!-- Earth -->
+            <radialGradient id="earthGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#8fdcff" />
+                <stop offset="40%" stop-color="#328bd0" />
+                <stop offset="65%" stop-color="#2168a5" />
+                <stop offset="100%" stop-color="#102d5c" />
+            </radialGradient>
+
+            <!-- Mars -->
+            <radialGradient id="marsGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#ffad80" />
+                <stop offset="45%" stop-color="#d96548" />
+                <stop offset="75%" stop-color="#a83f32" />
+                <stop offset="100%" stop-color="#63251f" />
+            </radialGradient>
+
+            <!-- Jupiter -->
+            <radialGradient id="jupiterGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#f5d4a3" />
+                <stop offset="30%" stop-color="#d9a66f" />
+                <stop offset="50%" stop-color="#b9794c" />
+                <stop offset="65%" stop-color="#d0a477" />
+                <stop offset="80%" stop-color="#9b6343" />
+                <stop offset="100%" stop-color="#583827" />
+            </radialGradient>
+
+            <!-- Saturn -->
+            <radialGradient id="saturnGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#fff0c4" />
+                <stop offset="45%" stop-color="#e5cc91" />
+                <stop offset="75%" stop-color="#c2a96b" />
+                <stop offset="100%" stop-color="#78643e" />
+            </radialGradient>
+
+            <!-- Uranus -->
+            <radialGradient id="uranusGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#d5ffff" />
+                <stop offset="45%" stop-color="#9de5e5" />
+                <stop offset="75%" stop-color="#64bfc3" />
+                <stop offset="100%" stop-color="#397f87" />
+            </radialGradient>
+
+            <!-- Neptune -->
+            <radialGradient id="neptuneGradient" cx="30%" cy="25%">
+                <stop offset="0%" stop-color="#8ea6ff" />
+                <stop offset="40%" stop-color="#4668d6" />
+                <stop offset="70%" stop-color="#2947a5" />
+                <stop offset="100%" stop-color="#17265f" />
+            </radialGradient>
+
+        </defs>
+
+
+        <!-- SUN (start/stop button) -->
+        <circle id="sun" cx="10" cy="250" r="105" fill="url(#sunGradient)" />
+
+        <!-- MERCURY -->
+        <circle id="mercury" cx="180" cy="370" r="20" fill="url(#mercuryGradient)" />
+
+        <!-- VENUS -->
+        <circle id="venus" cx="252" cy="220" r="28" fill="url(#venusGradient)" />
+
+        <!-- EARTH -->
+        <circle id="earth" cx="334" cy="310" r="36" fill="url(#earthGradient)" />
+
+        <!-- MARS -->
+        <circle id="mars" cx="420" cy="390" r="25" fill="url(#marsGradient)" />
+
+        <!-- JUPITER -->
+        <circle id="jupiter" cx="480" cy="240" r="74" fill="url(#jupiterGradient)" />
+
+        <!-- SATURN RINGS -->
+        <ellipse id="saturn-ring-outer" cx="580" cy="85" rx="85" ry="23"
+            fill="none" stroke="#b9a675" stroke-width="5"
+            transform="rotate(-20 580 85)" />
+
+        <ellipse id="saturn-ring-middle" cx="580" cy="85" rx="75" ry="19"
+            fill="none" stroke="#dfcd9b" stroke-width="4"
+            transform="rotate(-20 580 85)" />
+
+        <ellipse id="saturn-ring-inner" cx="580" cy="85" rx="64" ry="15"
+            fill="none" stroke="#9d895e" stroke-width="3"
+            transform="rotate(-20 580 85)" />
+
+        <!-- SATURN -->
+        <circle id="saturn" cx="580" cy="85" r="55" fill="url(#saturnGradient)" />
+
+        <!-- URANUS -->
+        <circle id="uranus" cx="682" cy="360" r="36" fill="url(#uranusGradient)" />
+
+        <!-- NEPTUNE -->
+        <circle id="neptune" cx="740" cy="150" r="34" fill="url(#neptuneGradient)" />
+
+    </svg>
+
+
+    <!-- pitch panel along the bottom -->
+    <section id="pitchPanel" aria-label="Pitch">
+
+        <div class="pitch-text">
+            <h2>Pitch: <span id="pitchWord">Middle</span></h2>
+            <p>Makes every planet sound higher or lower.</p>
+        </div>
+
+        <button id="lowerButton" class="pitch-button" aria-label="Make the sounds lower">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 28 28" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5 V23 M7 16 L14 23 L21 16"/></svg>
+            Lower
+        </button>
+
+        <div id="pitchSlider" role="group" aria-label="Pitch steps">
+            <div class="pitch-line"><div id="pitchFill" class="pitch-fill"></div></div>
+            <button class="pitch-stop" data-step="-2" aria-label="Lowest pitch"></button>
+            <button class="pitch-stop" data-step="-1" aria-label="Low pitch"></button>
+            <button class="pitch-stop" data-step="0" aria-label="Middle pitch"></button>
+            <button class="pitch-stop" data-step="1" aria-label="High pitch"></button>
+            <button class="pitch-stop" data-step="2" aria-label="Highest pitch"></button>
+        </div>
+
+        <button id="higherButton" class="pitch-button" aria-label="Make the sounds higher">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 28 28" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 23 V5 M7 12 L14 5 L21 12"/></svg>
+            Higher
+        </button>
+
+    </section>
+
+    </div>
+
+
+    <!-- Tone.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <!-- Final Instrument JavaScript -->
+    <script src="final-instrument.script.js"></script>
+
+</body>
+</html>
