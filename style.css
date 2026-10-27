@@ -14,6 +14,9 @@
     --colour-link: #d372f6;
 }
 
+/* Swap the colour order to account for the user's OS dark mode. */
+/* !!!!! */
+/* Remember to update these colours too when changing the palette above. */
 @media (prefers-color-scheme: dark) {
     :root {
         --colour-1: #f0f6f0;
@@ -32,25 +35,36 @@ body {
     gap: 1rem;
 }
 
+/* Keep the page title within the same centred width as the content. */
 header {
     display: flex;
     justify-content: center;
-    margin-block-end: 3rem;
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 0 auto 3rem;
+    text-align: center;
 }
 
+/* Centre the navigation and main content together, with equal outer margins. */
 .mainNavContainer {
-    flex: 1;
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
+/* Keep the navigation in a consistent-width column. */
 nav {
     display: flex;
     flex-direction: column;
-    min-width: fit-content;
-    flex: 1;
+    flex: 0 0 180px;
+    min-width: 0;
     align-items: flex-end;
+    gap: 0.25rem;
 }
 
 /* Navigation links use the link colour and are underlined on hover. */
@@ -68,13 +82,14 @@ a {
     color: var(--colour-link);
 }
 
+/* Let the main content fill the space next to the navigation. */
 main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px; /* Keeps line length readable. */
-    margin: 0 auto; /* Centres the main content block on the page. */
+    align-items: stretch;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
 }
 
 /* Work-index sections fill the available main-content width. */
@@ -84,15 +99,22 @@ main > section {
     box-sizing: border-box;
 }
 
+/* Keep paragraph text left-aligned. */
+p {
+    text-align: left;
+}
+
 aside {
-    visibility: hidden;
-    flex: 1;
+    display: none;
 }
 
 footer {
     display: flex;
     justify-content: center;
-    margin-block-start: 3rem;
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 3rem auto 0;
 }
 
 /* Spacing technique explained by Kevin Powell. */
@@ -129,26 +151,28 @@ footer {
     header {
         margin-block-end: 1rem;
     }
+
     .mainNavContainer {
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
+        align-items: stretch;
+        gap: 1.5rem;
     }
+
     nav {
-        flex: 0;
+        flex: none;
         width: 100%;
-        max-width: 80rch;
-        justify-content: space-between;
+        min-width: 0;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 0.75rem;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
     }
+
     main {
-        flex: 1;
+        width: 100%;
     }
-    aside {
-        flex: 0;
-    }
+
     footer {
         margin-block-start: 1rem;
     }
@@ -207,7 +231,7 @@ article {
     margin-bottom: 2rem;
 }
 
-/* space out list items, e.g. in Design Framing */
+/* Space out list items, e.g. in Design Framing. */
 ul {
     margin-bottom: 1rem;
     padding-left: 1.5rem;
